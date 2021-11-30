@@ -57,15 +57,15 @@ if (e.getKeyCode() == imageIndex && simonSays) {
 		// 17. Increase the value of score
 points +=1;
 		// 18. Use the speak method to tell the user they were correct
-speak("Sadly, you are right? :(");
-JOptionPane.showMessageDialog(null, "Sadly, you are right? :D");
+
+
 System.out.println("good");
 }
 		// 19. If the keyCode doesn't match the imageIndex and "Simon didn't
 		// say..."
 else {
-	points -=1;
-	speak("Sadly, you are not right?");
+//	points -=1;
+
 	JOptionPane.showMessageDialog(null, "Sadly, you are not right? :(");
 	tries +=1;
 	System.out.println("fail");
@@ -74,6 +74,7 @@ else {
 if (tries > 2) {
 	JOptionPane.showInputDialog("you managed to get " + points + " right, what do you have to say to the world?");
 System.out.println("3 fail");
+System.exit(0);
 }
 		// 21. Use the speak method to tell the user they were correct
 
@@ -112,18 +113,35 @@ frame.addKeyListener(this);
 Random ran = new Random();
 
  boolean rand = ran.nextBoolean(); 
-
+ int good = 0;
  // 13. Use the Random and the speak method to either say
 		// "Simon says press this key" or "Press this key"
 if (rand == true) {
-	speak("Simon says press this key");
-	JOptionPane.showMessageDialog(null, "Simon says press this key.");
+
+String yes = JOptionPane.showInputDialog("Simon says press this key.");
 	simonSays = true;
+	if (yes .equals ("no")) {
+		simonSays = false;
+	}
+	else {
+		simonSays = true;
+	}
 }
+
 else {
-	speak("press this key");
-	JOptionPane.showMessageDialog(null, "Press this key.");
+
+	String no = JOptionPane.showInputDialog("Press this key.");
+	if (no .equals ("no")) {
+		
+		good =1;
+	}
+	if (good != 1) {
 simonSays = false;
+good = 0;
+	}
+	else {
+		simonSays = true;
+	}
 }
 		// 14. Above, set the value of simonSays to true/false appropriately
 
