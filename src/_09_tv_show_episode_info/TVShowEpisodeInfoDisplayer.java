@@ -1,6 +1,9 @@
 package _09_tv_show_episode_info;
 
 
+import java.awt.Dimension;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.HttpURLConnection;
@@ -8,13 +11,32 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.ArrayList;
 
+import javax.swing.JButton;
+import javax.swing.JFrame;
 import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+import javax.swing.JTextField;
 
-public class TVShowEpisodeInfoDisplayer {
+public class TVShowEpisodeInfoDisplayer implements ActionListener {
+	JFrame jeff = new JFrame();
+	JPanel jepp = new JPanel();
+	JButton jebb = new JButton();
+	JTextField jetf = new JTextField();
 	
 	public TVShowEpisodeInfoDisplayer() {
-		
+	jeff.setTitle("This is not a question.");
+	jeff.setPreferredSize(new Dimension (300, 150));
+	jeff.setVisible(true);
+		jebb.setText("Submit.");
+	jetf.setPreferredSize(new Dimension (150, 30));
+
+		jebb.addActionListener(this);
+		jepp.add(jetf);
+		jepp.add(jebb);
+		jeff.add(jepp);
+		jeff.pack();
 	}
+
 
 	
 	
@@ -73,5 +95,18 @@ public class TVShowEpisodeInfoDisplayer {
 		}
 		
 		return res;
+	}
+
+
+
+
+
+
+	@Override
+	public void actionPerformed(ActionEvent e) {
+		// TODO Auto-generated method stub
+		String show = jetf.getText();
+		getShowEpisodeData(show);
+		JOptionPane.showMessageDialog(null, 	getShowEpisodeData(show));
 	}
 }
