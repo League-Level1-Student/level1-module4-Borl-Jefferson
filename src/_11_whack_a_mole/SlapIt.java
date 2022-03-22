@@ -2,6 +2,7 @@ package _11_whack_a_mole;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.Date;
 import java.util.Random;
 
 import javax.swing.JButton;
@@ -22,11 +23,16 @@ public class SlapIt implements ActionListener {
 
 	int check = 7;
 	int store = 7;
-	int score = 1;
+double score = 0;
 	int perc;
-	int oscore;
-	int fscore;
-	int fail = 1;
+	double oscore;
+	double fscore;
+	double total;
+	int hun = 100;
+	double fail = 0;
+	long tabms;
+	long taems;
+  
 Random r = new Random(System.nanoTime());
 int rf = r.nextInt(jb.length);
 	public static void main(String[] args) {
@@ -35,11 +41,11 @@ int rf = r.nextInt(jb.length);
 	}
 
 	public void run() {
-
+jeff.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		jeff.add(jepp);
 		jeff.pack();
 	
-		System.out.println(score);
+		
 
 		for (int i = 0; i < jb.length; i++) {
 			jb[i] = new JButton();
@@ -54,7 +60,7 @@ int rf = r.nextInt(jb.length);
 		jeff.pack();
 			jeff.setSize(300, 200);
 		jb[rf].setText("Hit");
-
+tabms=System.currentTimeMillis();
 	}
 
 	@Override
@@ -74,19 +80,53 @@ int rf = r.nextInt(jb.length);
 			check = 3;
 
 score++;
-System.out.println(score);
-fail = fail/score;
-fscore = 100/fail;
-			System.out.println(fscore + "%");
-			System.out.println(" ");
+total = score + fail;
+oscore = score/total;
+fscore = oscore * 100;
 
+System.out.println(fscore);
+System.out.println(fail + ", " + score);
 		} else {
 			JOptionPane.showMessageDialog(null, "You missed.");
 			//score = 0;
-			oscore=score-1;
-			perc=100/score;
+			//oscore=score-1;
+			//perc=100/score;
+				fail++;
+				total = score + fail;
+				oscore = score/total;
+				fscore = oscore * 100;
+
+				System.out.println(fscore);
+				System.out.println(fail + ", " + score);
+			//fscore=perc*oscore;
+		}
+		taems = System.currentTimeMillis();
+		long tt = (taems - tabms) / 1000;
+		//tt += 215;
+		long ttf = tt/60;
+		int min = 0;
+			
+		
+		for (int i = 0; i < ttf; i++) {
+			
+		
+		if(ttf > 0) {
+			tt -= 60;
+			min++;
+		}
+		}
+		if (min == 0) {
+		System.out.println(tt + " seconds");
+		}
+		else {
+			if (tt < 10) {
 				
-			fscore=perc*oscore;
+			
+			System.out.println(min + ":0" + tt);
+		}
+			else {
+				System.out.println(min  + ":" + tt);
+			}
 		}
 	}
 }
