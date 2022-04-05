@@ -1,5 +1,6 @@
 package _11_whack_a_mole;
 
+import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.Date;
@@ -50,15 +51,19 @@ jeff.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		for (int i = 0; i < jb.length; i++) {
 			jb[i] = new JButton();
 			jb[i].addActionListener(this);
+			jb[i].setSize(10, 5);
 		}
 		jeff.setVisible(true);
 		for (int i = 0; i < jb.length; i++) {
 			jepp.add(jb[i]);
+			
 		}
 		jeff.add(jepp);
-		jeff.setSize(300, 200);
+		int mox = (mo*100)/4;
+		int moy = (mo*100)/6;
+		jeff.setPreferredSize(new Dimension (mox, moy));
 		jeff.pack();
-			jeff.setSize(300, 200);
+
 		jb[rf].setText("Hit");
 tabms=System.currentTimeMillis();
 	}
@@ -83,10 +88,11 @@ score++;
 total = score + fail;
 oscore = score/total;
 fscore = oscore * 100;
-
+System.out.println("------------------");
 System.out.println(fscore);
 System.out.println(fail + ", " + score);
 		} else {
+			
 			JOptionPane.showMessageDialog(null, "You missed.");
 			//score = 0;
 			//oscore=score-1;
@@ -97,6 +103,7 @@ System.out.println(fail + ", " + score);
 				fscore = oscore * 100;
 
 				System.out.println(fscore);
+				System.out.println("-----------------");
 				System.out.println(fail + ", " + score);
 			//fscore=perc*oscore;
 		}
@@ -105,10 +112,10 @@ System.out.println(fail + ", " + score);
 		//tt += 215;
 		long ttf = tt/60;
 		int min = 0;
-			
+double ctt = (taems - tabms) / 1000;
 		
 		for (int i = 0; i < ttf; i++) {
-			
+		
 		
 		if(ttf > 0) {
 			tt -= 60;
@@ -116,17 +123,23 @@ System.out.println(fail + ", " + score);
 		}
 		}
 		if (min == 0) {
-		System.out.println(tt + " seconds");
+		System.out.print(tt + " seconds");
 		}
 		else {
 			if (tt < 10) {
 				
 			
-			System.out.println(min + ":0" + tt);
+			System.out.print(min + ":0" + tt);
 		}
 			else {
-				System.out.println(min  + ":" + tt);
+				System.out.print(min  + ":" + tt);
 			}
 		}
+	
+
+	 double ttt = total + ctt;
+			 ctt /= total;
+			 System.out.println(" total, " + ctt + " average");
+			 
 	}
 }
