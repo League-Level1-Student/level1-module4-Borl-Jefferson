@@ -3,6 +3,8 @@ package _11_whack_a_mole;
 import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import java.util.Date;
 import java.util.Random;
 
@@ -33,6 +35,7 @@ double score = 0;
 	double fail = 0;
 	long tabms;
 	long taems;
+	
   
 Random r = new Random(System.nanoTime());
 int rf = r.nextInt(jb.length);
@@ -50,6 +53,16 @@ jeff.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
 		for (int i = 0; i < jb.length; i++) {
 			jb[i] = new JButton();
+			jb[i].addMouseListener(new MouseAdapter() {
+				
+				public
+				void mouseEntered(MouseEvent e) {
+				
+					actionPerformed(e);
+					
+					
+				}
+			});
 			jb[i].addActionListener(this);
 			jb[i].setSize(10, 5);
 		}
@@ -68,8 +81,8 @@ jeff.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 tabms=System.currentTimeMillis();
 	}
 
-	@Override
-	public void actionPerformed(ActionEvent e) {
+
+	public void actionPerformed(MouseEvent e) {
 		// TODO Auto-generated method stub
 
 		if (e.getSource() == jb[rf]) {
@@ -89,9 +102,10 @@ total = score + fail;
 oscore = score/total;
 fscore = oscore * 100;
 System.out.println("------------------");
-System.out.println(fscore);
-System.out.println(fail + ", " + score);
-		} else {
+//System.out.println(fscore);
+//System.out.println(fail + ", " + score);
+System.out.println(score);
+		 /*else {
 			
 			JOptionPane.showMessageDialog(null, "You missed.");
 			//score = 0;
@@ -106,7 +120,7 @@ System.out.println(fail + ", " + score);
 				System.out.println("-----------------");
 				System.out.println(fail + ", " + score);
 			//fscore=perc*oscore;
-		}
+		}*/
 		taems = System.currentTimeMillis();
 		long tt = (taems - tabms) / 1000;
 		//tt += 215;
@@ -140,6 +154,6 @@ double ctt = (taems - tabms) / 1000;
 	 double ttt = total + ctt;
 			 ctt /= total;
 			 System.out.println(" total, " + ctt + " average");
-			 
+		}	 
 	}
 }
