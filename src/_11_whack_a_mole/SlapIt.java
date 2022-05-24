@@ -19,7 +19,7 @@ public class SlapIt implements ActionListener {
 	JPanel jepp = new JPanel();
 	int mo = 0;
 	{
-		String am = JOptionPane.showInputDialog("How many moles?");
+		String am = JOptionPane.showInputDialog("How many moles? (12 recomended)");
 		 mo = Integer.parseInt(am);
 	}
 	JButton[] jb = new JButton[mo];

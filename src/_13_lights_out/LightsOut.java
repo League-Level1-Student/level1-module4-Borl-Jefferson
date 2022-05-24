@@ -1,9 +1,16 @@
 package _13_lights_out;
 
 import java.awt.Color;
+import java.awt.Dimension;
+import java.awt.GridLayout;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.awt.event.MouseWheelEvent;
+import java.awt.event.MouseWheelListener;
+import java.util.Random;
 
+import javax.swing.JButton;
+import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
@@ -17,20 +24,35 @@ import javax.swing.JPanel;
  * 
  * 
  */
-public class LightsOut implements MouseListener {
-
-	JPanel gamePanel = new JPanel();
-
+public class LightsOut implements MouseListener, MouseWheelListener {
+JFrame jeff = new JFrame();
+	JPanel jepp = new JPanel();
+	JLabel[] jl = new JLabel[26];
+	Random r = new Random();
 	public LightsOut() {
 
 		/** PART 1. CREATE YOUR LIGHT BOARD **/
-		//1. Make your gamePanel a 5x5 grid with setLayout(new GridLayout(5, 5));
+		//1. Make your jepp a 5x5 grid with setLayout(new GridLayout(5, 5));
+		jepp.setLayout(new GridLayout(5, 5));
 		
-		
-			//2. Add 25 JLabels to your gamePanel (these are your lights)
+			//2. Add 25 JLabels to your jepp (these are your lights)
 
 			//3. Use setText() to add a position number to each light (0-24).
+for (int i = 0; i < 25; i++) {
+	jl[i] = new JLabel();
+		jl[i].setText("" + i);
+		jl[i].setBackground(Color.LIGHT_GRAY);
+		jl[i].setOpaque(true);
+		jl[i].addMouseListener(this);
+		jl[i].addMouseWheelListener(this);
+		
+		jepp.add(jl[i]);
+	}	
 
+jeff.add(jepp);
+jeff.setPreferredSize(new Dimension (500, 500));
+jeff.setVisible(true);
+jeff.pack();
 			//4. Set the background of each light to LIGHT_GRAY
 			// - you will also have to set the background to opaque.
 			// - Use light.setOpaque(true);
@@ -41,14 +63,23 @@ public class LightsOut implements MouseListener {
 		//6. Add your panel to a frame
 
 		//7. Set the size of the frame
-
+int f1 = r.nextInt(24);
+int f2 = r.nextInt(24);
+toggle((jl[f2]));
+		toggle((jl[f1]));
 	}
 
 	@Override
 	public void mouseClicked(MouseEvent e) {
 		/** PART 2: TOGGLE NEIGHBORING LIGHTS **/
 		// 1. Get the light that was clicked on `(JLabel) e.getSource`
-
+		for (int i = 0; i < 25; i++) {
+			
+		
+if(e.getSource() == jl[i]) {
+	makeMove(i);
+}
+}
 		// 2. Get the number (position) of the light
 
 		// 3. Now use the makeMove method to code which lights turn on and off.
@@ -63,23 +94,23 @@ public class LightsOut implements MouseListener {
 	}
 
 	void makeMove(int pos) {
-		toggle((JLabel) gamePanel.getComponent(pos));
+		toggle((JLabel) jepp.getComponent(pos));
 		if (pos >= 5) {
-			toggle((JLabel) gamePanel.getComponent(pos - 5));
+			toggle((JLabel) jepp.getComponent(pos - 5));
 		}
 		if ((pos + 1) % 5 != 0) {
-			toggle((JLabel) gamePanel.getComponent(pos + 1));
+			toggle((JLabel) jepp.getComponent(pos + 1));
 		}
 		if (pos % 5 != 0) {
-			toggle((JLabel) gamePanel.getComponent(pos - 1));
+			toggle((JLabel) jepp.getComponent(pos - 1));
 		}
 		if (pos + 5 <= 24) {
-			toggle((JLabel) gamePanel.getComponent(pos + 5));
+			toggle((JLabel) jepp.getComponent(pos + 5));
 		}
 	}
 
 	JLabel getLightAtPosition(int lightPosition) {
-		return (JLabel) gamePanel.getComponent(lightPosition);
+		return (JLabel) jepp.getComponent(lightPosition);
 	}
 
 	void toggle(JLabel label) {
@@ -106,5 +137,17 @@ public class LightsOut implements MouseListener {
 
 	@Override
 	public void mousePressed(MouseEvent e) {
+	}
+
+	@Override
+	public void mouseWheelMoved(MouseWheelEvent e) {
+		// TODO Auto-generated method stub
+		for (int i = 0; i < 25; i++) {
+			
+			
+			if(e.getSource() == jl[i]) {
+				toggle((jl[i]));
+			}
+		}
 	}
 }

@@ -15,8 +15,8 @@ import javax.swing.JPanel;
 import javax.swing.Timer;
 
 public class Thing2 extends JPanel implements ActionListener {
-	add a fail system
-	add a skip feature
+	
+	//add a skip feature
 	BufferedImage con;
 	BufferedImage git;
 	BufferedImage java;
@@ -28,7 +28,8 @@ public class Thing2 extends JPanel implements ActionListener {
 	int score = 12;
 	Timer time;
 	int t =1;
-
+String co;
+	
 	JPanel jepp = new JPanel();
 	JButton jebb = new JButton();
 	BufferedImage slot1, slot2, slot3;
@@ -79,6 +80,8 @@ public class Thing2 extends JPanel implements ActionListener {
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		// TODO Auto-generated method stub
+		
+		if(score > 0) {
 		if(e.getSource() == jebb && time.isRunning() == false) {
 			time.start();
 			c1 = 0;
@@ -86,7 +89,9 @@ public class Thing2 extends JPanel implements ActionListener {
 			c3 =0;
 			JOptionPane.showMessageDialog(null, "-2 tokens.");
 			score -=2;
-			
+			if (score < 0) {
+				score = 0;
+			}
 			System.out.println(score + " tokens remaining.");
 		
 			}
@@ -176,6 +181,18 @@ public class Thing2 extends JPanel implements ActionListener {
 		}
 		
 
+	
+	}
+	else{
+		co = JOptionPane.showInputDialog("You've ran out of tokens, would you like to continue playing? Type \"yes\" to restart or \"no\" to stop. ");
+		
+		if(co.equals ("yes")) {
+			score = 10;
+		}
+		else {
+			System.exit(0);
+		}
+		}
 	}
 	
 }
