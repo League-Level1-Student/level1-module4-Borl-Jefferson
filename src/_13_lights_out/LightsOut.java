@@ -76,28 +76,24 @@ public class LightsOut implements MouseListener, MouseWheelListener {
 	public void mouseClicked(MouseEvent e) {
 		/** PART 2: TOGGLE NEIGHBORING LIGHTS **/
 		// 1. Get the light that was clicked on `(JLabel) e.getSource`
-		check = 0;
-		String dbg = "";
+     
+System.out.println("part of it works at least");
 		for (int i = 0; i < 25; i++) {
-
-			if (e.getSource() == jl[i]) {
+			if (e.getSource() == jl[i].jell) {
 				makeMove(i);
-
+System.out.println(i);
 			}
+
+			/*
 			if (jl[i].on) {
 				check += 1;
 			} else {
 				dbg += i + ", ";
 
-			}
+			}*/
 		}
 
-		System.out.println(dbg);
-		System.out.println(check);
-		System.out.println("-");
-		if (check == 25) {
-			JOptionPane.showMessageDialog(null, "You won!");
-		}
+
 		// 2. Get the number (position) of the light
 
 		// 3. Now use the makeMove method to code which lights turn on and off.
@@ -185,8 +181,8 @@ public class LightsOut implements MouseListener, MouseWheelListener {
 		// TODO Auto-generated method stub
 		for (int i = 0; i < 25; i++) {
 
-			if (e.getSource() == jl[i]) {
-				toggle((jl[i]));
+			if (e.getSource() == jl[i].jell) {
+				toggle(jl[i]);
 			}
 		}
 	}
