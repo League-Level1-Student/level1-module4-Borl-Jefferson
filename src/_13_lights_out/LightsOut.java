@@ -77,7 +77,7 @@ public class LightsOut implements MouseListener, MouseWheelListener {
 		/** PART 2: TOGGLE NEIGHBORING LIGHTS **/
 		// 1. Get the light that was clicked on `(JLabel) e.getSource`
      
-System.out.println("part of it works at least");
+
 		for (int i = 0; i < 25; i++) {
 			if (e.getSource() == jl[i].jell) {
 				makeMove(i);
@@ -91,6 +91,11 @@ System.out.println(i);
 				dbg += i + ", ";
 
 			}*/
+			
+			if(jl[i].getBackground() == Color.LIGHT_GRAY) {
+				
+			}
+			
 		}
 
 
